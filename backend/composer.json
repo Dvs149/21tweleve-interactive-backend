@@ -50,7 +50,10 @@
             "@php artisan key:generate --ansi"
         ],
         "divyesh":[
-            "@php artisan db:seed --class=ProductSeeder"
+            "@composer install",
+            "@php artisan migrate:fresh",
+            "@php artisan storage:link"
+            // "@php artisan db:seed --class=ProductSeeder"
         ]
     },
     "extra": {
