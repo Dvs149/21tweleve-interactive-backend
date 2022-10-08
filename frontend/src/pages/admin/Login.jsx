@@ -38,7 +38,6 @@ const Login = () => {
       }).catch(error => {
         if (error.response) {
           setLoginInput({...loginInput, error_list: error.response.data.errors});
-          console.log(error.response.data.message);
         }
       });
     });

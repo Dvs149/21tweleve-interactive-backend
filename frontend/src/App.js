@@ -24,9 +24,7 @@ axios.interceptors.request.use(function (config) {
 });
 
 function App() {
-  console.log(process.env.REACT_APP_SERVER_URL);
   // const isAuthenticated = localStorage.getItem("auth_token");
-  // console.log(isAuthenticated);
   // const isAuthenticated = !!localStorage.getItem("auth_token");
   return (
     <div className="App">

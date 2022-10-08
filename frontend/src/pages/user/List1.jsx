@@ -8,13 +8,11 @@ const List = () => {
   const [productList, setProductList] = useState("");
   useEffect(() => {
     loadProduct();
-    // console.log(productList);
     // document.title = `You clicked  times`;
   }, []);
   const loadProduct = async () => {
     const result = await axios.get('http://127.0.0.1:8000/api/product');
     var pl = result.data.data.product_list;
-    // console.log(pl);
     setProductList(pl);
   }
   

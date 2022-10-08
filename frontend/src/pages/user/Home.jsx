@@ -11,12 +11,10 @@ const Home = () => {
         if(res.data.status === true)
         {
           var product_list = res.data.data.product_list;
-          console.log(product_list);
         }
       }).catch(error => {
         if (error.response) {
           // setLoginInput({...loginInput, error_list: error.response.data.errors});
-          console.log(error.response.data.message);
         }
       });
     });

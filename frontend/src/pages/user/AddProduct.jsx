@@ -17,7 +17,6 @@ const AddProduct = () => {
 
     const handleInput = (e) => {
         // e.persist();
-        console.log(e);
         // setImage(e.target.files[0]);
         setProductInput({...productInput,[e.target.name]:e.target.value});
     }
@@ -39,7 +38,6 @@ const AddProduct = () => {
             }).catch(error => {
                 if (error.response) {
                     setProductInput({...productInput, error_list: error.response.data.errors});
-                //   console.log(error.response.data.message);
                 }
               });
         })

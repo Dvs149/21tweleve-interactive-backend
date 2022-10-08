@@ -9,13 +9,11 @@ const List = () => {
   const [productList, setProductList] = useState("");
   useEffect(() => {
     loadProduct();
-    // console.log(productList);
     // document.title = `You clicked  times`;
   }, []);
   const loadProduct = async () => {
     const result = await axios.get('http://127.0.0.1:8000/api/product');
     var pl = result.data.data.product_list;
-    // console.log(pl);
     setProductList(pl);
   }
   
@@ -28,8 +26,8 @@ const List = () => {
       buttons: true,
       dangerMode: true,
     })
-    .then((willDelete) => {
-      if (willDelete) {
+    .then((isConfirm) => {
+      if (isConfirm) {
         axios.get('/sanctum/csrf-cookie').then(response => {
           axios.delete(`api/product/${id}`).then(res => {
               loadProduct()
@@ -41,13 +39,12 @@ const List = () => {
           }).catch(error => {
               if (error.response) {
                   // setProductInput({...productInput, error_list: error.response.data.errors});
-              //   console.log(error.response.data.message);
               }
             });
       })
         
       } else {
-        swal("Your imaginary file is safe!");
+        swal("Your record is safe!");
       }
     });
   }

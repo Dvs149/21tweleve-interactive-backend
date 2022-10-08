@@ -13,7 +13,6 @@ export const Navbar = () => {
         axios.get(`/api/logout`).then(res => {
             if(res.data.status === true)
             {
-                console.log(res.data)
                 localStorage.removeItem('auth_token');
                 localStorage.removeItem('auth_email');
                 // swal("Success",res.data.message,"success");

@@ -12,9 +12,12 @@ const ShowProduct = () => {
     image:''
   });
   const {id} = useParams();
+  useEffect(() => {
+    fetchProduct();
+    // document.title = `You clicked  times`;
+  },[]);
   const fetchProduct = async () => {
     await axios.get(`api/product/${id}`).then(({data})=>{
-        console.log(data.data.product);
         const prod = data.data.product
     //   const { title, description } = data.product
       setProduct({
@@ -27,10 +30,7 @@ const ShowProduct = () => {
     
     })
   }
-  useEffect(() => {
-    fetchProduct();
-    // document.title = `You clicked  times`;
-  },[]);
+  
   return (
     <div>
       <section className="text-gray-600 body-font">

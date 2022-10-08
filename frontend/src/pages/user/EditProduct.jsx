@@ -22,12 +22,12 @@ const EditProduct = () => {
 
     const fetchProduct = async () => {
         await axios.get(`api/product/${id}/edit`).then(({data})=>{
-            // console.log(data.data.product);
             const prod = data.data.product
         //   const { title, description } = data.product
           setProductInput({
             name:prod.name,
             detail:prod.detail,
+            image_path:prod.product_image_url,
             error_list:[]
           })
         }).catch(({response:{data}})=>{
@@ -53,7 +53,6 @@ const EditProduct = () => {
           }
         fData.append("name",productInput.name);
         fData.append("detail",productInput.detail);
-          console.log(fData);
         axios.get('/sanctum/csrf-cookie').then(response => {
             axios.post(`api/product/${id}`,fData,{ "Content-Type": "multipart/form-data" }).then(res => {
                 swal("Success",res.data.message,"success");
@@ -61,7 +60,6 @@ const EditProduct = () => {
             }).catch(error => {
                 if (error.response) {
                     setProductInput({...productInput, error_list: error.response.data.errors});
-                //   console.log(error.response.data.message);
                 }
               });
         })
@@ -79,8 +77,12 @@ const EditProduct = () => {
                         <textarea name="detail" onChange={handleInput} value={productInput.detail}   className="  form-control  block  w-full  px-3  py-1.5  text-base  font-normal  text-gray-700  bg-white bg-clip-padding  border border-solid border-gray-300  rounded  transition  ease-in-out  m-0  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleFormControlTextarea13" rows={3} placeholder="detail" defaultValue={""} />
                         <span className='text-red-600'>{productInput.error_list.detail}</span>
                     </div>
+                    <img className="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded m-auto" alt="hero" src={productInput.image_path}  />
+
                     <div className="form-group mb-6">
-                        <input type="file" name="image" onChange={handleFileSelect}/>
+                        <label htmlFor="image">Update Image from here
+                        <input type="file" id="image" name="image" onChange={handleFileSelect}/>
+                        </label>
                     </div>
                    
                     <input type="submit" className=" w-full px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" value="submit " />

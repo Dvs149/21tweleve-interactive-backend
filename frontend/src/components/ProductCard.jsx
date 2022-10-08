@@ -1,7 +1,6 @@
 import React from 'react'
 
 export const ProductCard = ({ name, detail, image }) => {
-    console.log({ name, detail, image })
     return (
         <section className="text-gray-600 body-font mx-auto">
             <div className="container mx-auto flex px-5 py-24 items-center justify-center flex-col">

@@ -42,7 +42,6 @@ const Register = () => {
       }).catch(error => {
         if (error.response) {
           setRegister({...registerInput, error_list: error.response.data.errors});
-          console.log(error.response.data.errors);
         }
       });
     });
